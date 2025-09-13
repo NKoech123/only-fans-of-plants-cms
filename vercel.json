@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "has": [{ "type": "host", "value": "www.onlyfansofplants.com" }],
+      "destination": "https://onlyfansofplants.com/$1",
+      "permanent": true
+    }
+  ]
+}

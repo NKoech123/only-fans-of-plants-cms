@@ -3,6 +3,7 @@
 import { Builder } from "@builder.io/react";
 import Image from "next/image";
 import { PlantGrid } from "./plant-grid";
+import { Navbar } from "./navbar";
 
 // Custom Hero Component
 export function Hero({
@@ -155,6 +156,36 @@ export function FeatureSection({
     </section>
   );
 }
+
+// Register Navbar with Builder.io
+Builder.registerComponent(Navbar, {
+  name: "Navbar",
+  inputs: [
+    {
+      name: "logoSrc",
+      type: "file",
+      allowedFileTypes: ["jpeg", "jpg", "png", "svg"],
+    },
+    { name: "logoAlt", type: "string", defaultValue: "Only Fans of Plants" },
+    {
+      name: "navItems",
+      type: "list",
+      subFields: [
+        { name: "label", type: "string" },
+        { name: "href", type: "string" },
+      ],
+      defaultValue: [
+        { label: "Home", href: "/" },
+        { label: "Shop", href: "/shop" },
+        { label: "Care Guides", href: "/guides" },
+        { label: "About", href: "/about" },
+      ],
+    },
+    { name: "showCta", type: "boolean", defaultValue: false },
+    { name: "ctaLabel", type: "string", defaultValue: "Get Started" },
+    { name: "ctaLink", type: "string", defaultValue: "#" },
+  ],
+});
 
 // Register components with Builder.io
 Builder.registerComponent(Hero, {
