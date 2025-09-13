@@ -58,9 +58,9 @@ export function PlantGrid({
               price={plant.price}
               image={plant.image}
               careLevel={plant.careLevel}
-              rating={plant.rating}
               onSale={plant.onSale}
-              isFavorite={plant.isFavorite}
+              description={plant.description}
+              category={plant.category}
             />
           ))}
         </div>
