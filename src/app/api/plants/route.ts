@@ -7,7 +7,7 @@ export async function GET() {
     return NextResponse.json(plants);
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to fetch plants" },
+      { error: `Failed to fetch plants: ${error}` },
       { status: 500 }
     );
   }

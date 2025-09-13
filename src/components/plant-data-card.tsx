@@ -6,6 +6,9 @@ import { PlantCard } from "./custom-components";
 interface PlantData {
   id: string;
   name: string;
+  category: string;
+  description: string;
+  rotation: number;
   price: string;
   image: string;
   careLevel: "Easy" | "Medium" | "Hard";
@@ -50,9 +53,10 @@ export function PlantDataCard({ plantId }: { plantId: string }) {
       price={plantData.price}
       image={plantData.image}
       careLevel={plantData.careLevel}
-      rating={plantData.rating}
+      category={plantData.category}
+      description={plantData.description}
       onSale={plantData.onSale}
-      isFavorite={plantData.isFavorite}
+      rotation={plantData.rotation}
     />
   );
 }
