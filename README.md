@@ -31,6 +31,46 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Follow these steps to deploy to Vercel and configure your custom domain onlyfansofplants.com.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 1) Deploy with Vercel CLI
+```bash
+# install CLI and login
+npm i -g vercel
+vercel login
+
+# from the project root, link or create the Vercel project
+vercel
+
+# deploy to production
+vercel --prod
+```
+
+### 2) Add the domain to the project
+```bash
+# add apex and www domains to the Vercel project
+vercel domains add onlyfansofplants.com
+vercel domains add www.onlyfansofplants.com
+```
+
+### 3) Configure DNS at your domain registrar
+Create these records at your DNS provider (registrar):
+- A record for root ("@"): points to 76.76.21.21
+- CNAME record for host "www": points to cname.vercel-dns.com.
+
+Example using Vercel DNS (only if your domain uses Vercel nameservers):
+```bash
+vercel dns add onlyfansofplants.com @ A 76.76.21.21
+vercel dns add onlyfansofplants.com www CNAME cname.vercel-dns.com
+```
+
+### 4) SSL
+No extra action needed. Vercel automatically provisions and renews SSL/TLS (Let’s Encrypt) after DNS is verified.
+
+### 5) Redirect www to root
+A redirect rule is included in vercel.json so that https://www.onlyfansofplants.com → https://onlyfansofplants.com.
+
+### 6) Environment variables (if needed)
+If your app requires environment variables, add them in the Vercel dashboard (Project Settings → Environment Variables) or via CLI before deploying.
+
+After DNS propagates, your site will be available at https://onlyfansofplants.com/ and https://www.onlyfansofplants.com/ (with www redirecting to root).
