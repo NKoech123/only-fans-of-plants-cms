@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export function Navbar({
   logoSrc = "/next.svg",
@@ -25,6 +26,7 @@ export function Navbar({
   ctaLink?: string;
 }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   // Close mobile menu when clicking outside or pressing escape
   useEffect(() => {
@@ -92,9 +94,16 @@ export function Navbar({
               <Link
                 key={i}
                 href={item.href}
-                className="navbar-item text-gray-700 hover:text-gray-900 transition-colors"
+                className={`navbar-item relative px-3 py-2 rounded-md transition-colors ${
+                  pathname === item.href
+                    ? "bg-green-600 text-white"
+                    : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
+                }`}
               >
                 {item.label}
+                {pathname === item.href && (
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-white rounded-full" />
+                )}
               </Link>
             ))}
           </div>
@@ -158,7 +167,11 @@ export function Navbar({
                       key={i}
                       href={item.href}
                       onClick={closeMobileMenu}
-                      className="block px-4 py-3 text-gray-700 hover:text-gray-900 hover:bg-gray-50 rounded-md transition-colors font-medium"
+                      className={`block px-4 py-3 rounded-md transition-colors font-medium ${
+                        pathname === item.href
+                          ? "bg-green-600 text-white"
+                          : "text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+                      }`}
                     >
                       {item.label}
                     </Link>

@@ -40,14 +40,5 @@ export default function BuilderPage({
     return <BuilderComponent model={model} content={builderContent} />;
   }
 
-  // If there's no content, return null or a fallback
-  if (!builderContent) {
-    return (
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="text-lg">Page not found</div>
-      </div>
-    );
-  }
-
   return <BuilderComponent model={model} content={builderContent} />;
 }
