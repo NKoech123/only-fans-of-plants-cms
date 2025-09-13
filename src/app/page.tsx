@@ -36,7 +36,7 @@ export default function Home() {
 
   // If Builder.io content exists, render it
   if (content) {
-    return <BuilderPage model="only-fans-of-plants" content={content} />;
+    return <BuilderPage model="page" content={content} />;
   }
 
   // Fallback content if no Builder.io content is found
