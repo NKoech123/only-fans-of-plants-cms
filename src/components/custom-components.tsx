@@ -177,7 +177,7 @@ Builder.registerComponent(Navbar, {
       defaultValue: [
         { label: "Home", href: "/" },
         { label: "Shop", href: "/shop" },
-        { label: "Care Guides", href: "/guides" },
+        { label: "Plant Care", href: "/plant-care" },
         { label: "About", href: "/about" },
       ],
     },

@@ -10,7 +10,7 @@ export function Navbar({
   navItems = [
     { label: "Home", href: "/" },
     { label: "Shop", href: "/shop" },
-    { label: "Care Guides", href: "/guides" },
+    { label: "Plant Care", href: "/plant-care" },
     { label: "About", href: "/about" },
   ],
   showCta = false,
@@ -67,8 +67,8 @@ export function Navbar({
 
   return (
     <>
-      <nav className="navbar-container bg-white shadow-sm relative z-50">
-        <div className="navbar-inner container px-4 flex items-center justify-between">
+      <nav className="navbar-container w-full bg-white shadow-sm relative z-50">
+        <div className="navbar-inner w-full max-w-none px-4 flex items-center justify-between">
           <div className="navbar-left flex items-center gap-4">
             <Link
               href="/"
@@ -126,7 +126,7 @@ export function Navbar({
 
       {/* Mobile Sidebar Overlay */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
+        <div className="fixed inset-0 z-[60] md:hidden">
           {/* Backdrop */}
           <div
             className="fixed inset-0 bg-black bg-opacity-50 transition-opacity"
@@ -134,7 +134,7 @@ export function Navbar({
           />
 
           {/* Sidebar */}
-          <div className="fixed top-0 right-0 h-full w-64 bg-white shadow-xl transform transition-transform">
+          <div className="fixed top-0 right-0 w-full h-full w-64 bg-white shadow-xl transform transition-transform z-[70]">
             <div className="flex flex-col h-full">
               {/* Header */}
               <div className="flex items-center justify-between p-4 border-b border-gray-200">
