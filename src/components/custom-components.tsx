@@ -50,7 +50,7 @@ export function PlantCard({
   careLevel = "Easy",
   category = "Indoor",
   description = "This is a description of the plant",
-  rotation = 0,
+  rotation = 90,
   onSale = false,
   // Image control props
   imageAspectRatio = "square",
@@ -135,12 +135,23 @@ export function PlantCard({
           </div>
 
           {/* Plant Image */}
-          <div className="relative w-full h-full">
+          <div
+            className="relative w-full h-full group/image"
+            style={
+              {
+                "--rotation": `${rotation}deg`,
+                "--scale": imageScale / 100,
+                "--hover-scale": hoverZoom / 100,
+                "--offset-x": `${imageOffsetX}px`,
+                "--offset-y": `${imageOffsetY}px`,
+              } as React.CSSProperties
+            }
+          >
             <Image
               src={image}
               alt={name}
               fill
-              className={`${
+              className={`transition-transform duration-500 ease-out ${
                 imageObjectFit === "cover"
                   ? "object-cover"
                   : imageObjectFit === "contain"
@@ -174,21 +185,14 @@ export function PlantCard({
                   : "object-center"
               }`}
               style={{
-                transform: `rotate(${rotation}deg) scale(${
-                  imageScale / 100
-                }) translate(${imageOffsetX}px, ${imageOffsetY}px)`,
+                transform: `rotate(var(--rotation)) scale(var(--scale)) translate(var(--offset-x), var(--offset-y))`,
                 transformOrigin: "center",
-                transition: "transform 0.5s ease-out",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.transform = `rotate(${rotation}deg) scale(${
-                  hoverZoom / 100
-                }) translate(${imageOffsetX}px, ${imageOffsetY}px)`;
+                e.currentTarget.style.transform = `rotate(var(--rotation)) scale(var(--hover-scale)) translate(var(--offset-x), var(--offset-y))`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.transform = `rotate(${rotation}deg) scale(${
-                  imageScale / 100
-                }) translate(${imageOffsetX}px, ${imageOffsetY}px)`;
+                e.currentTarget.style.transform = `rotate(var(--rotation)) scale(var(--scale)) translate(var(--offset-x), var(--offset-y))`;
               }}
             />
           </div>

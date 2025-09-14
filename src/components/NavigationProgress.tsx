@@ -1,14 +1,10 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import LoadingSpinner from "./LoadingSpinner";
 
-export default function NavigationProgress({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+function NavigationProgressInner({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [showContent, setShowContent] = useState(true);
   const pathname = usePathname();
@@ -97,5 +93,17 @@ export default function NavigationProgress({
         {children}
       </div>
     </>
+  );
+}
+
+export default function NavigationProgress({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <Suspense fallback={<LoadingSpinner isVisible={true} />}>
+      <NavigationProgressInner>{children}</NavigationProgressInner>
+    </Suspense>
   );
 }
